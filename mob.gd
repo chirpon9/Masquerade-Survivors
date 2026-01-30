@@ -1,17 +1,17 @@
-extends RigidBody2D
+extends CharacterBody2D
 
+@export var speed = 150.0
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	var mob_types = Array($AnimatedSprite2D.sprite_frames.get_animation_names())
 	$AnimatedSprite2D.animation = mob_types.pick_random()
 	$AnimatedSprite2D.play()
+	add_to_group("mobs")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-		queue_free()
+func _physics_process(_delta):
+	var player = get_tree().get_first_node_in_group("player")
+	if player:
+		var direction = (player.global_position - global_position).normalized()
+		velocity = direction * speed
+		move_and_slide()

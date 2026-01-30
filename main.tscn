@@ -23,7 +23,7 @@ texture = ExtResource("4_1bvp3")
 region_enabled = true
 region_rect = Rect2(0, 0, 20000, 20000)
 
-[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("1_ig7tw")]
 z_index = 20
 
 [node name="MobTimer" type="Timer" parent="."]
