@@ -26,9 +26,10 @@ func new_game():
 func _on_mob_timer_timeout() -> void:
 	var mob = mob_scene.instantiate()
 	
-	var mob_spawn_location = $MobPath/MobSpawnLocation
+	var mob_spawn_location = $Player/MobPath/MobSpawnLocation
 	mob_spawn_location.progress_ratio = randf()
-	mob.position = mob_spawn_location.position
+	mob.position = mob_spawn_location.global_position
+	
 	
 	add_child(mob)
 

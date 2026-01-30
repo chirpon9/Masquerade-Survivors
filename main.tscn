@@ -7,7 +7,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_0xm2m"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1283, 3, 0, 0, 0, 0, 1279, 711, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 1, 4)
+"points": PackedVector2Array(0, 0, 0, 0, -794.31824, -466.13333, 0, 0, 0, 0, 256.14383, -476.7238, 0, 0, 0, 0, 1283, -476.7238, 0, 0, 0, 0, 1279, 711, 0, 0, 0, 0, 244.34088, 709.40955, 0, 0, 0, 0, -794.3183, 720)
 }
 point_count = 6
 
@@ -26,6 +26,17 @@ region_rect = Rect2(0, 0, 20000, 20000)
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_ig7tw")]
 z_index = 20
 
+[node name="MobPath" type="Path2D" parent="Player"]
+position = Vector2(-165.6135, -95.88489)
+scale = Vector2(0.67779696, 0.7553957)
+curve = SubResource("Curve2D_0xm2m")
+metadata/_edit_group_ = true
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="Player/MobPath"]
+position = Vector2(-794.31824, -466.13333)
+rotation = -0.0100813685
+metadata/_edit_group_ = true
+
 [node name="MobTimer" type="Timer" parent="."]
 wait_time = 0.5
 
@@ -37,13 +48,6 @@ one_shot = true
 
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(649, 439)
-
-[node name="MobPath" type="Path2D" parent="."]
-curve = SubResource("Curve2D_0xm2m")
-
-[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
-position = Vector2(1, 4)
-rotation = -1.815775
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
