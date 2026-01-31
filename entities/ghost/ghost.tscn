@@ -34,7 +34,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("6_yd707")
 }],
-"loop": true,
+"loop": false,
 "name": &"scream",
 "speed": 5.0
 }]
@@ -50,6 +50,7 @@ script = ExtResource("1_qlb3m")
 position = Vector2(1.7500038, 11.5)
 scale = Vector2(0.15859376, 0.1671875)
 sprite_frames = SubResource("SpriteFrames_7kc56")
+animation = &"scream"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.7500038, 6.5)
@@ -58,3 +59,8 @@ shape = SubResource("RectangleShape2D_cqp5c")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="ShootTimer" type="Timer" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-35, -8)
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

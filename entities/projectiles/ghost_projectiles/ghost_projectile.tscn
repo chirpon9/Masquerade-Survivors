@@ -14,10 +14,12 @@ script = ExtResource("1_fgeh4")
 shape = SubResource("RectangleShape2D_bspv4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-207.5, -227.5)
-scale = Vector2(0.3515625, 0.2890625)
+position = Vector2(0, 23)
+rotation = -4.712389
+scale = Vector2(0.18220215, 0.1282959)
 texture = ExtResource("2_falal")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(-293, -280)
-rect = Rect2(-1, -26, 78, 149)
+position = Vector2(-7, 21)
+rotation = -1.5707964
+rect = Rect2(1, -26, 43, 66)

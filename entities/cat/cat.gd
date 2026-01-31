@@ -33,5 +33,4 @@ func _on_shoot_timer_timeout():
 func randomize_shoot_timer():
 	# Changes wait_time to a random value between 5 and 10 seconds
 	$ShootTimer.wait_time = randf_range(3.0, 4.0)
-	print($ShootTimer.wait_time)
 	$ShootTimer.start()

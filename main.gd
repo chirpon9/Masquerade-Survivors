@@ -41,7 +41,7 @@ func _on_mob_timer_timeout() -> void:
 	mob.position = mob_spawn_location.global_position
 	
 	
-	#add_child(mob)
+	add_child(mob)
 
 func _on_score_timer_timeout() -> void:
 	score += 1

@@ -11,9 +11,9 @@ func _ready():
 	# Initialize the first random shot
 	randomize_shoot_timer()
 
+
 func _physics_process(_delta):
 	var player = get_tree().get_first_node_in_group("player")
-	print(player.global_position)
 	if player:
 		var direction = (player.global_position - global_position).normalized()
 		velocity = direction * speed
@@ -24,6 +24,11 @@ func _physics_process(_delta):
 
 func _on_shoot_timer_timeout():
 	# Instantiate and fire bullet
+	$AnimatedSprite2D.play("scream")
+
+	await $AnimatedSprite2D.animation_finished
+	
+	$AnimatedSprite2D.play("default")
 	var b = bullet.instantiate()
 	get_tree().root.add_child(b)
 	b.start($Marker2D.global_position)
@@ -33,6 +38,5 @@ func _on_shoot_timer_timeout():
 
 func randomize_shoot_timer():
 	# Changes wait_time to a random value between 5 and 10 seconds
-	$ShootTimer.wait_time = randf_range(3.0, 4.0)
-	print($ShootTimer.wait_time)
+	$ShootTimer.wait_time = randf_range(10.0, 15.0)
 	$ShootTimer.start()
