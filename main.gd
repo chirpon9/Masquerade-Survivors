@@ -16,10 +16,7 @@ func _process(delta: float) -> void:
 	health_bar.value = $Player.current_health
 	
 	var health_pct = float($Player.current_health) / $Player.max_health
-	if health_pct < 0.3:
-		health_bar.get("theme_override_styles/fill").bg_color = Color.BLACK
-	else:
-		health_bar.get("theme_override_styles/fill").bg_color = Color.GREEN
+	health_bar.get("theme_override_styles/fill").bg_color = Color.GREEN
 
 
 func game_over():
