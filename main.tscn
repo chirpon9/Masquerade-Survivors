@@ -76,6 +76,17 @@ position = Vector2(-1, 0)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 auto_translate_mode = 1
 
+[node name="SurvivalTimerLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "hiii"
+
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="FurnitureTimer" to="." method="_on_furniture_timer_timeout"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]

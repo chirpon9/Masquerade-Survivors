@@ -2,7 +2,7 @@ extends CharacterBody2D
 signal hit
 
 
-@export var speed = 400 # How fast the player will move (pixels/sec).
+@export var speed = 300 # How fast the player will move (pixels/sec).
 @export var max_health = 100 # max health
 
 var current_health
