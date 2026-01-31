@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cx77soagcktcb"]
+[gd_scene load_steps=10 format=3 uid="uid://cx77soagcktcb"]
 
 [ext_resource type="Script" uid="uid://ci4dk0ncf0n8b" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cwis8i3kf8pqp" path="res://player.tscn" id="1_ig7tw"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://di4ybycty7iis" path="res://mob.tscn" id="2_h2yge"]
 [ext_resource type="Texture2D" uid="uid://vk2dv6rpuup5" path="res://art/image.webp" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://crb3yjy08j244" path="res://health_bar.gd" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://rfq6odta53p5" path="res://bullet_reworked.tscn" id="7_272bh"]
 
 [sub_resource type="Curve2D" id="Curve2D_0xm2m"]
 _data = {
@@ -75,6 +76,15 @@ position = Vector2(-1, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 auto_translate_mode = 1
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(544, -148)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(515, 277)
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(-460, 194)
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="FurnitureTimer" to="." method="_on_furniture_timer_timeout"]
