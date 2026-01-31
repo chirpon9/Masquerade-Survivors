@@ -1,6 +1,11 @@
 extends CharacterBody2D
 
-@export var speed = 125.0
+@export var speed = 400
+
+# Inside bullet_reworked.gd
+func start(_pos):
+	global_position = _pos
+
 
 func _ready():
 	add_to_group("mobs")

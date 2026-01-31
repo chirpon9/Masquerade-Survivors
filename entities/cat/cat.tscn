@@ -1,0 +1,51 @@
+[gd_scene load_steps=8 format=3 uid="uid://6k6g1sv18ml1"]
+
+[ext_resource type="Script" uid="uid://bvwhsvrlvytm7" path="res://entities/cat/cat.gd" id="1_midgw"]
+[ext_resource type="Texture2D" uid="uid://cplfm08bkhb2j" path="res://art/cat1.webp" id="2_t12tm"]
+[ext_resource type="Texture2D" uid="uid://uu6lb7h1gcrh" path="res://art/cat2.webp" id="3_wt1vt"]
+[ext_resource type="Texture2D" uid="uid://dtwb40j82u353" path="res://art/cat3.webp" id="4_7xucd"]
+[ext_resource type="Texture2D" uid="uid://crlv3wxttyju" path="res://art/cat4.webp" id="5_7e0k0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orsa2"]
+size = Vector2(91, 93)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ip1iv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_t12tm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wt1vt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_7xucd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_7e0k0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_midgw")
+
+[node name="ShootTimer" type="Timer" parent="."]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-4.5, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.5, -1.5)
+shape = SubResource("RectangleShape2D_orsa2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_ip1iv")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-50, -5)
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
