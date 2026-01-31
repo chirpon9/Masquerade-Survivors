@@ -1,4 +1,4 @@
-extends Area2D
+extends CharacterBody2D
 signal hit
 
 
@@ -49,10 +49,10 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	# Check if the body has a damage value (works for mobs and future projectiles)
-	var damage = 10
 	if "damage" in body:
-		damage = body.damage
-		take_damage(damage)
+		take_damage(body.damage)
+	else:
+		take_damage(10)
 
 
 func take_damage(amount):

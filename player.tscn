@@ -33,7 +33,7 @@ animations = [{
 radius = 23.0
 height = 86.0
 
-[node name="Player" type="Area2D"]
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_sweqy")
 metadata/_edit_group_ = true
 
@@ -52,5 +52,3 @@ metadata/_edit_group_ = true
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 metadata/_edit_group_ = true
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]

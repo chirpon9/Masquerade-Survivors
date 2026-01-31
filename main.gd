@@ -1,6 +1,6 @@
 extends Node
 
-
+@export var furniture_scene: PackedScene
 @export var mob_scene: PackedScene
 var score
 
@@ -16,10 +16,7 @@ func _process(delta: float) -> void:
 	health_bar.value = $Player.current_health
 	
 	var health_pct = float($Player.current_health) / $Player.max_health
-	if health_pct < 0.3:
-		health_bar.get("theme_override_styles/fill").bg_color = Color.BLACK
-	else:
-		health_bar.get("theme_override_styles/fill").bg_color = Color.GREEN
+	health_bar.get("theme_override_styles/fill").bg_color = Color.GREEN
 
 
 func game_over():
@@ -50,3 +47,20 @@ func _on_score_timer_timeout() -> void:
 func _on_start_timer_timeout() -> void:
 	$MobTimer.start()
 	$ScoreTimer.start()
+	
+func _on_furniture_timer_timeout() -> void:
+	# 1. Create the table
+	var table = furniture_scene.instantiate()
+
+	# 2. Use the same MobPath following the player
+	var spawn_location = $Player/MobPath/MobSpawnLocation
+	spawn_location.progress_ratio = randf()
+
+	# 3. Randomize the "sprawl"
+	# Rotate the table randomly so they aren't all aligned
+	
+	# Set position to the global location on the path
+	table.global_position = spawn_location.global_position
+
+	# 4. Add to the main scene
+	add_child(table)

@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var speed = 125.0
+@export var damage = 10 #
 
 func _ready():
 	
