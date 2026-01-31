@@ -1,6 +1,6 @@
 extends Node
 
-@export var furniture_scene: PackedScene
+@export var furniture_scenes: Array[PackedScene]
 @export var mob_scene: PackedScene
 var score
 var survival_time: float = 0.0
@@ -54,21 +54,20 @@ func _on_start_timer_timeout() -> void:
 	$ScoreTimer.start()
 	
 func _on_furniture_timer_timeout() -> void:
-	# 1. Create the table
-	var table = furniture_scene.instantiate()
+	if furniture_scenes.is_empty():
+		return
+		
+	# 1. Pick a random furniture scene from the array
+	var random_scene = furniture_scenes.pick_random()
+	var furniture = random_scene.instantiate()
 
-	# 2. Use the same MobPath following the player
+	# 2. Use your existing spawning logic
 	var spawn_location = $Player/MobPath/MobSpawnLocation
 	spawn_location.progress_ratio = randf()
+	furniture.global_position = spawn_location.global_position
 
-	# 3. Randomize the "sprawl"
-	# Rotate the table randomly so they aren't all aligned
-	
-	# Set position to the global location on the path
-	table.global_position = spawn_location.global_position
-
-	# 4. Add to the main scene
-	add_child(table)
+	# 3. Add to the scene
+	add_child(furniture)
 
 func update_timer_display():
 	var minutes = int(survival_time) / 60

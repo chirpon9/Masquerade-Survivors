@@ -1,11 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://cx77soagcktcb"]
+[gd_scene load_steps=15 format=3 uid="uid://cx77soagcktcb"]
 
 [ext_resource type="Script" uid="uid://ci4dk0ncf0n8b" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cwis8i3kf8pqp" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://d1unqdr7phqa0" path="res://furniture.tscn" id="2_7mycd"]
 [ext_resource type="PackedScene" uid="uid://di4ybycty7iis" path="res://mob.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://xdby6hbb383m" path="res://statue1.tscn" id="3_5vw27"]
 [ext_resource type="Texture2D" uid="uid://vk2dv6rpuup5" path="res://art/image.webp" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://c1bpn6dr27vm7" path="res://table.tscn" id="4_kek77"]
+[ext_resource type="PackedScene" uid="uid://e2yvpjww7kjq" path="res://statue2.tscn" id="5_dg77c"]
 [ext_resource type="Script" uid="uid://crb3yjy08j244" path="res://health_bar.gd" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://17cmu03tcly0" path="res://statue3.tscn" id="6_ycdy4"]
+[ext_resource type="PackedScene" uid="uid://cpo3kcmh0oahx" path="res://statue4.tscn" id="7_w48qg"]
+[ext_resource type="PackedScene" uid="uid://d35x18i3eatmy" path="res://statue5.tscn" id="8_vivmo"]
 
 [sub_resource type="Curve2D" id="Curve2D_0xm2m"]
 _data = {
@@ -18,7 +24,7 @@ bg_color = Color(0.34117648, 1, 0.31764707, 1)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0xm2m")
-furniture_scene = ExtResource("2_7mycd")
+furniture_scenes = Array[PackedScene]([ExtResource("2_7mycd"), ExtResource("3_5vw27"), ExtResource("4_kek77"), ExtResource("5_dg77c"), ExtResource("6_ycdy4"), ExtResource("7_w48qg"), ExtResource("8_vivmo")])
 mob_scene = ExtResource("2_h2yge")
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -27,7 +33,7 @@ texture_repeat = 2
 position = Vector2(1, 0)
 texture = ExtResource("4_1bvp3")
 region_enabled = true
-region_rect = Rect2(0, 0, 20000, 20000)
+region_rect = Rect2(0, 0, 100000, 100000)
 
 [node name="Player" parent="." groups=["player"] instance=ExtResource("1_ig7tw")]
 z_index = 20
@@ -58,7 +64,7 @@ show_percentage = false
 script = ExtResource("5_lquwl")
 
 [node name="FurnitureTimer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 1.5
 autostart = true
 
 [node name="MobTimer" type="Timer" parent="."]

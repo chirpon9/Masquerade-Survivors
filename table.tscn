@@ -1,22 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://d1unqdr7phqa0"]
+[gd_scene load_steps=3 format=3 uid="uid://c1bpn6dr27vm7"]
 
-[ext_resource type="Texture2D" uid="uid://c3typbxy5cc1p" path="res://art/chair.webp" id="1_fugw3"]
+[ext_resource type="Texture2D" uid="uid://bi7lv2buirpi1" path="res://art/diningtable.webp" id="1_n1mr4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yv02d"]
-size = Vector2(82.125, 87.5)
+size = Vector2(221, 125)
 
 [node name="Node2D" type="StaticBody2D"]
 collision_layer = 2
 collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-0.12500381, -0.125)
-scale = Vector2(0.28085938, 0.2464844)
-texture = ExtResource("1_fugw3")
+position = Vector2(-1.5258789e-05, 1.9999847)
+scale = Vector2(0.4828125, 0.4828125)
+texture = ExtResource("1_n1mr4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 2
-position = Vector2(1.0625, 0.75)
+position = Vector2(-4.5, 23.5)
 shape = SubResource("RectangleShape2D_yv02d")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
