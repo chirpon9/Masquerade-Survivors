@@ -14,19 +14,9 @@ func _ready():
 		velocity = direction * speed
 
 func _physics_process(_delta):
-	var collision = move_and_collide(velocity * _delta)
-	if collision:
-		print("Collision occured")
+	move_and_slide()
+	for i in get_slide_collision_count():
 		queue_free()
-			
-		
-		# Handle logic for hitting the player specifically
-		#var collider = collision.get_collider()
-		#if collider.is_in_group("player"):
-			#print("projectile hits player")
-			#queue_free()
-	else:
-		move_and_slide()
 
 	
 
