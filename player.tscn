@@ -38,8 +38,8 @@ radius = 21.0
 height = 90.0
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 4
-collision_mask = 2
+collision_layer = 16
+collision_mask = 16
 script = ExtResource("1_sweqy")
 metadata/_edit_group_ = true
 
