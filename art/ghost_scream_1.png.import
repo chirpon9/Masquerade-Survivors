@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ph24kb337aev"
-path="res://.godot/imported/laserRed01.png-ad6c27741b5363ba77630c630ffc7038.ctex"
+uid="uid://8283y1ufifj2"
+path="res://.godot/imported/ghost_scream_1.png-de90bb553d98abcc0d14f3e5f9be3e88.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites_for_testing/laserRed01.png"
-dest_files=["res://.godot/imported/laserRed01.png-ad6c27741b5363ba77630c630ffc7038.ctex"]
+source_file="res://art/ghost_scream_1.png"
+dest_files=["res://.godot/imported/ghost_scream_1.png-de90bb553d98abcc0d14f3e5f9be3e88.ctex"]
 
 [params]
 

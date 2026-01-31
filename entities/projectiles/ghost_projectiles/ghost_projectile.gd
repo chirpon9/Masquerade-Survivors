@@ -6,10 +6,7 @@ extends CharacterBody2D
 func start(_pos):
 	global_position = _pos
 
-
-func _ready():
-	add_to_group("mobs")
-	
+func _ready():	
 	var player = get_tree().get_first_node_in_group("player")
 	if player:
 		var direction = (player.global_position - global_position).normalized()

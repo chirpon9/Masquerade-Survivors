@@ -1,11 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cx77soagcktcb"]
+[gd_scene load_steps=10 format=3 uid="uid://cx77soagcktcb"]
 
 [ext_resource type="Script" uid="uid://ci4dk0ncf0n8b" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://cwis8i3kf8pqp" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://d1unqdr7phqa0" path="res://furniture.tscn" id="2_7mycd"]
-[ext_resource type="PackedScene" uid="uid://di4ybycty7iis" path="res://mob.tscn" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://6k6g1sv18ml1" path="res://entities/cat/cat.tscn" id="3_7mycd"]
 [ext_resource type="Texture2D" uid="uid://vk2dv6rpuup5" path="res://art/image.webp" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://crb3yjy08j244" path="res://health_bar.gd" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://x5hya8gv4wu" path="res://entities/ghost/ghost.tscn" id="7_272bh"]
 
 [sub_resource type="Curve2D" id="Curve2D_0xm2m"]
 _data = {
@@ -19,7 +20,7 @@ bg_color = Color(0.34117648, 1, 0.31764707, 1)
 [node name="Main" type="Node2D"]
 script = ExtResource("1_0xm2m")
 furniture_scene = ExtResource("2_7mycd")
-mob_scene = ExtResource("2_h2yge")
+mob_scene = ExtResource("3_7mycd")
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -20
@@ -86,6 +87,9 @@ offset_bottom = 23.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
 text = "hiii"
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(152, -72)
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="FurnitureTimer" to="." method="_on_furniture_timer_timeout"]

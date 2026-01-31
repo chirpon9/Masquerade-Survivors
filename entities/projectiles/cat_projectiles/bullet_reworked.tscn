@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://rfq6odta53p5"]
 
-[ext_resource type="Script" uid="uid://cwvwdqs7opmwy" path="res://bullet_reworked.gd" id="1_4wsuf"]
-[ext_resource type="Texture2D" uid="uid://ph24kb337aev" path="res://sprites_for_testing/laserRed01.png" id="1_8rrx6"]
+[ext_resource type="Script" uid="uid://cwvwdqs7opmwy" path="res://entities/projectiles/cat_projectiles/bullet_reworked.gd" id="1_4wsuf"]
+[ext_resource type="Texture2D" uid="uid://ph24kb337aev" path="res://art/laserRed01.png" id="1_8rrx6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4wsuf"]
 radius = 6.0

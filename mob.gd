@@ -7,7 +7,7 @@ func _ready():
 	
 	var mob_types = Array($AnimatedSprite2D.sprite_frames.get_animation_names())
 	$AnimatedSprite2D.animation = mob_types.pick_random()
-	$AnimatedSprite2D.play("walk")
+	$AnimatedSprite2D.play()
 	add_to_group("mobs")
 
 func _physics_process(_delta):

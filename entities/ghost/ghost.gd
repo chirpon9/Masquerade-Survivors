@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed = 125.0
 @export var damage = 10
-const bullet = preload("res://entities/projectiles/cat_projectiles/bullet_reworked.tscn")
+const bullet = preload("res://entities/projectiles/ghost_projectiles/ghost_projectile.tscn")
 
 func _ready():
 	$AnimatedSprite2D.play("default")
@@ -13,6 +13,7 @@ func _ready():
 
 func _physics_process(_delta):
 	var player = get_tree().get_first_node_in_group("player")
+	print(player.global_position)
 	if player:
 		var direction = (player.global_position - global_position).normalized()
 		velocity = direction * speed
