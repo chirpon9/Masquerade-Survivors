@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 150.0
+@export var speed = 125.0
 
 func _ready():
 	
@@ -15,3 +15,6 @@ func _physics_process(_delta):
 		var direction = (player.global_position - global_position).normalized()
 		velocity = direction * speed
 		move_and_slide()
+		
+	if velocity.x != 0:
+		$AnimatedSprite2D.flip_h = velocity.x > 0

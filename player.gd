@@ -3,9 +3,13 @@ signal hit
 
 
 @export var speed = 400 # How fast the player will move (pixels/sec).
+@export var max_health = 100 # max health
 
+var current_health
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	current_health = max_health
+	
 	hide()
 
 
@@ -44,10 +48,28 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	hide() # Player disappears after being hit.
+	# Check if the body has a damage value (works for mobs and future projectiles)
+	var damage = 10
+	if "damage" in body:
+		damage = body.damage
+		take_damage(damage)
+
+
+func take_damage(amount):
+	current_health -= amount
+
+	# Update UI (We will create this signal next)
+	# health_changed.emit(current_health) 
+
+	if current_health <= 0:
+		die()
+
+func die():
+	hide()
 	hit.emit()
-	# Must be deferred as we can't change physics properties on a physics callback.
 	$CollisionShape2D.set_deferred("disabled", true)
+	
+	
 	
 func start(pos):
 	position = pos
