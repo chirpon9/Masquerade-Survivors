@@ -1,77 +1,66 @@
 extends CharacterBody2D
 signal hit
 
-
-@export var speed = 400 # How fast the player will move (pixels/sec).
-@export var max_health = 100 # max health
+@export var speed = 300 
+@export var max_health = 100 
 
 var current_health
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	current_health = max_health
-	
 	hide()
 
-
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	var velocity = Vector2.ZERO # The player's movement vector.
+# Use _physics_process for CharacterBody2D movement logic
+func _physics_process(delta: float) -> void:
+	var input_velocity = Vector2.ZERO 
+	
 	if Input.is_action_pressed("move_right"):
-		velocity.x += 1
+		input_velocity.x += 1
 	if Input.is_action_pressed("move_left"):
-		velocity.x -= 1
+		input_velocity.x -= 1
 	if Input.is_action_pressed("move_down"):
-		velocity.y += 1
+		input_velocity.y += 1
 	if Input.is_action_pressed("move_up"):
-		velocity.y -= 1
+		input_velocity.y -= 1
 
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
+	if input_velocity.length() > 0:
+		# Set the built-in velocity property instead of updating position
+		velocity = input_velocity.normalized() * speed
 		$AnimatedSprite2D.play()
 	else:
+		velocity = Vector2.ZERO
 		$AnimatedSprite2D.stop()
 		
-	position += velocity * delta
+	# This function handles the physics and stops you at obstacles
+	move_and_slide()
 	
+	# Animation logic
 	if velocity.x != 0:
 		$AnimatedSprite2D.animation = "walk"
-		$AnimatedSprite2D.flip_v = false
-		# See the note below about the following boolean assignment.
 		$AnimatedSprite2D.flip_h = velocity.x < 0
 	elif velocity.y != 0:
 		$AnimatedSprite2D.animation = "up"
-		$AnimatedSprite2D.flip_v = false
-	
 
-
-func _on_body_entered(body: Node2D) -> void:
-	# Check if the body has a damage value (works for mobs and future projectiles)
+# Connect your Area2D (Hurtbox) body_entered signal here
+func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if "damage" in body:
 		take_damage(body.damage)
 	else:
 		take_damage(10)
 
-
 func take_damage(amount):
 	current_health -= amount
-
-	# Update UI (We will create this signal next)
-	# health_changed.emit(current_health) 
-
 	if current_health <= 0:
 		die()
 
 func die():
 	hide()
 	hit.emit()
-	$CollisionShape2D.set_deferred("disabled", true)
-	
-	
+	# Disable the detection shape
+	$Hurtbox/CollisionShape2D.set_deferred("disabled", true)
 	
 func start(pos):
 	position = pos
+	current_health = max_health # Reset health on start
 	show()
-	$CollisionShape2D.disabled = false
+	$Hurtbox/CollisionShape2D.disabled = false

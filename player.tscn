@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwis8i3kf8pqp"]
+[gd_scene load_steps=7 format=3 uid="uid://cwis8i3kf8pqp"]
 
 [ext_resource type="Script" uid="uid://dxrn8bsqdjmgb" path="res://player.gd" id="1_sweqy"]
 [ext_resource type="Texture2D" uid="uid://bdjt3uxrpx6r5" path="res://art/player_right1.webp" id="2_i3pqv"]
@@ -33,6 +33,10 @@ animations = [{
 radius = 23.0
 height = 86.0
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3pqv"]
+radius = 21.0
+height = 90.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 16
 collision_mask = 16
@@ -54,3 +58,11 @@ metadata/_edit_group_ = true
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
 metadata/_edit_group_ = true
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_i3pqv")
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

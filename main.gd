@@ -3,7 +3,7 @@ extends Node
 @export var furniture_scene: PackedScene
 @export var mob_scene: PackedScene
 var score
-
+var survival_time: float = 0.0
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
@@ -15,8 +15,13 @@ func _process(delta: float) -> void:
 	var health_bar = $Player/HealthBar
 	health_bar.value = $Player.current_health
 	
+	survival_time += delta
+	update_timer_display()
+	$MobTimer.wait_time = max(0.2, 1.0 - (survival_time * 0.01))
+	
 	var health_pct = float($Player.current_health) / $Player.max_health
 	health_bar.get("theme_override_styles/fill").bg_color = Color.GREEN
+	
 
 
 func game_over():
@@ -64,3 +69,9 @@ func _on_furniture_timer_timeout() -> void:
 
 	# 4. Add to the main scene
 	add_child(table)
+
+func update_timer_display():
+	var minutes = int(survival_time) / 60
+	var seconds = int(survival_time) % 60
+	# Formats as "00:00"
+	$CanvasLayer/SurvivalTimerLabel.text = "%02d:%02d" % [minutes, seconds]
